@@ -30,7 +30,7 @@ For deploying this application on any system, follow the below steps. Please ens
 ### Test Application
 For the sake of simplicity to run application in a more pleasing way, Spring Doc has been generated. Ones the application is deployed, you can access the Spring Docs on the following URL
 
-**http://<HOST>:<PORT>/persons/api/v1/swagger-ui/index.html?configUrl=/persons/api/v1/docs/swagger-config#/person-controller**
+**http://<HOST_NAME>:<PORT_NUMBER>/persons/api/v1/swagger-ui/index.html?configUrl=/persons/api/v1/docs/swagger-config#/person-controller**
 
 So if you run your application on local on the above 8080 port then the URL will turn out to be
 
