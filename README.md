@@ -1,4 +1,5 @@
 ![Java CI with Maven](https://github.com/dishantkamble/person-api/workflows/Java%20CI%20with%20Maven/badge.svg?branch=main)
+![Java CI with Maven Status](https://github.com/dishantkamble/person-api/workflows/Java%20CI%20with%20Maven/badge.svg?branch=main&event=status)
 
 # Getting Started: 
 
