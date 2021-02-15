@@ -39,11 +39,12 @@ So if you run your application on local on the above 8080 port then the URL will
 
 [Person API Spring Doc URL](http://localhost:8080/persons/api/v1/swagger-ui/index.html?configUrl=/persons/api/v1/docs/swagger-config#/person-controller)
 
-Configured users:
-User: admin.dishant
-Pass: password
-Access: Management, Health, API-docs, GET, POST, PUT, DELETE
+Admin User:
+* User: admin.dishant
+* Pass: password
+* Access: Management, Health, API-docs, GET, POST, PUT, DELETE
 
-User: user.dishant
-Pass: password
-Access: Management, Health, API-docs, GET, POST
+User:
+* User: user.dishant
+* Pass: password
+* Access: Management, Health, API-docs, GET, POST
