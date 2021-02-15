@@ -42,9 +42,9 @@ So if you run your application on local on the above 8080 port then the URL will
 **Admin User:**
 * **User:** admin.dishant
 * **Pass:** password
-* **Access:** Management, Health, API-docs, GET, POST, PUT, DELETE
+* **Access:** [Management](http://localhost:8080/persons/api/v1/management), [Health](http://localhost:8080/persons/api/v1/management/health), GET, POST, PUT, DELETE
 
 User:
 * **User:** user.dishant
 * **Pass:** password
-* **Access:** Management, Health, API-docs, GET, POST
+* **Access:** [Management](http://localhost:8080/persons/api/v1/management), [Health](http://localhost:8080/persons/api/v1/management/health), GET, POST
