@@ -1,6 +1,6 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/dishantkamble/person-api/badge)](https://www.codefactor.io/repository/github/dishantkamble/person-api)
 ![CodeQL](https://github.com/dishantkamble/person-api/workflows/CodeQL/badge.svg)
-![Java CI with Maven](https://github.com/dishantkamble/person-api/workflows/Java%20CI%20with%20Maven/badge.svg?branch=main)
+![Java CI with Maven](https://github.com/dishantkamble/person-api/workflows/Java%20CI%20with%20Maven/badge.svg)
 ![Docker Image CI](https://github.com/dishantkamble/person-api/workflows/Docker%20Image%20CI/badge.svg)
 
 # Getting Started: 
