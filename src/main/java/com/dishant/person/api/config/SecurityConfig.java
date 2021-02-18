@@ -19,7 +19,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
-@Profile({"default", "cloud"})
+@Profile({ "default", "cloud" })
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String PERSONS_PATH = "/persons/**";
@@ -32,15 +32,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-        .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/management/health").permitAll()
                 .antMatchers(HttpMethod.GET, "/management/**").authenticated()
-                .antMatchers(HttpMethod.GET, "/api-docs").authenticated()
 
-                .antMatchers(HttpMethod.GET, PERSONS_PATH).hasAnyRole(SecurityScope.USER.name(), SecurityScope.ADMIN.name())
-                .antMatchers(HttpMethod.POST, PERSONS_PATH).hasAnyRole(SecurityScope.USER.name(), SecurityScope.ADMIN.name())
+                .antMatchers(HttpMethod.GET, PERSONS_PATH)
+                .hasAnyRole(SecurityScope.USER.name(), SecurityScope.ADMIN.name())
+                .antMatchers(HttpMethod.POST, PERSONS_PATH)
+                .hasAnyRole(SecurityScope.USER.name(), SecurityScope.ADMIN.name())
                 .antMatchers(HttpMethod.PUT, PERSONS_PATH).hasRole(SecurityScope.ADMIN.name())
-                .antMatchers(HttpMethod.PATCH, PERSONS_PATH).hasRole(SecurityScope.ADMIN.name())
                 .antMatchers(HttpMethod.DELETE, PERSONS_PATH).hasRole(SecurityScope.ADMIN.name())
                 .and()
                 .httpBasic();
