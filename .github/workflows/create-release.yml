@@ -7,13 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Create a Release
     steps:
-#     - uses: actions/checkout@v2
-#     - uses: elgohr/Github-Release-Action@master
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
     - uses: alice-biometrics/release-creator/@v1.0.5
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        version: 'v2.0.0'
+        version: 'inherit'
         branch: main
-        description: 'Version :ok_hand:'
+        description: 'inherit'
