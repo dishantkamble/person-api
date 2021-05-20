@@ -12,5 +12,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         version: 'inherit'
         branch: main
-        tag: 'inherit'
+        tag_name: 'inherit'
         description: 'inherit'
