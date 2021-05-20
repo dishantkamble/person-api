@@ -5,11 +5,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Create a Release
     steps:
-    - uses: actions/checkout@v2
-    - name: Create a Release
-      uses: elgohr/Github-Release-Action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+#     - uses: actions/checkout@v2
+#     - uses: elgohr/Github-Release-Action@master
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+    - uses: alice-biometrics/release-creator/@v1.0.5
       with:
-        args: New Release
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        version: 'v2.0.0'
+        description: 'Version :ok_hand:'
