@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "helm.fullname" . }}
+  labels:
+    app: person-api
+    chart: {{ .Chart.Name }}
+    release: {{ .Release.Name }}
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
+  selector:
+    matchLabels:
+      app: person-api
+      chart: {{ .Chart.Name }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: person-api
+        chart: {{ .Chart.Name }}
+        chartVersion: "{{ .Chart.Version | replace "+" "_" }}"
+        release: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ include "helm.serviceAccountName" . }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.personapi.path }}/management/health
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 10
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.personapi.path }}/management/health
+            port: http
+          initialDelaySeconds: 10
+          periodSeconds: 3
+          failureThreshold: 3
+        resources:
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+          requests:
+            cpu: "1.0"
+            memory: "1Gi"
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: {{ .Values.profilesActive }}
+          - name: K8S_API_HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.credentials.dtsKubernetesCluster.secret }}
+                key: host
+          # - name: K8S_API_PASSWORD
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: {{ .Values.credentials.dtsKubernetesCluster.secret }}
+          #       key: password
+          - name: K8S_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.credentials.dtsKubernetesCluster.secret }}
+                key: token
+          - name: K8S_API_CA_CRT
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.credentials.dtsKubernetesCluster.secret }}
+                key: caCrt
+          # - name: K8S_API_USERNAME
+          #   valueFrom:
+          #     secretKeyRef:
+          #       name: {{ .Values.credentials.dtsKubernetesCluster.secret }}
+          #       key: username

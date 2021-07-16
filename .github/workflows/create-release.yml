@@ -1,0 +1,19 @@
+name: Create Release
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Create a Release
+    steps:
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')"
+    - uses: alice-biometrics/release-creator/@v1.0.5
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        version: v1.0.0-${{ steps.date.outputs.date }}
+        prerelease: true
+        branch: main
+        description: 'inherit'

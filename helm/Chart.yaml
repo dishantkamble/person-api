@@ -1,0 +1,4 @@
+apiVersion: v2
+name: person-api
+description: Person-API
+version: 0.1.0

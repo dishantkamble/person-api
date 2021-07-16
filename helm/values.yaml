@@ -1,0 +1,18 @@
+replicaCount: 1
+image:
+  repository: dishantk/person-api
+  pullPolicy: Always
+  tag: "latest"
+
+revisionHistoryLimit: 1
+profilesActive: ""
+
+serviceAccount:
+  name: ""
+
+credentials:
+  dtsKubernetesCluster:
+    secret: person-api-secret
+
+personapi:
+  path: /persons/api/v1
