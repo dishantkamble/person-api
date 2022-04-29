@@ -15,13 +15,11 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file pom.xml -DskipTests
       - name: Bump Versions
         uses: michmich112/version-bumper@master
         with:
           scheme: semantic
-          username: dishantkamble
-          email: dishantk@gmail.com
           version-file: "VERSION"
           files: >
             [
