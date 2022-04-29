@@ -11,6 +11,8 @@ jobs:
       - name: "Update Version"
         id: update-version
         uses: google-github-actions/release-please-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release-type: maven
           token: ${{ secrets.GITHUB_TOKEN }}
