@@ -14,7 +14,6 @@ jobs:
         with:
           release-type: maven
           token: ${{ secrets.GITHUB_TOKEN }}
-          version-file: VERSION
       - name: "Create release"
         id: create-release
         uses: actions/create-release@v1
