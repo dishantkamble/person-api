@@ -16,33 +16,17 @@ jobs:
           java-version: '11'
       - name: Build with Maven
         run: mvn -B package --file pom.xml -DskipTests
-      - name: Bump Versions
-        uses: michmich112/version-bumper@master
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v3.0.0
         with:
-          scheme: semantic
-          version-file: "VERSION"
-          files: >
-            [
-              "./pom.xml",
-              "./VERSION"
-            ]
-          rules: >
-            [{
-              "trigger": "commit",
-              "branch": "staging",
-              "suffix": "-beta",
-              "bump": "build"
-            },{
-              "trigger": "pull-request",
-              "destBranch": "main",
-              "suffix": "-rc",
-              "bump": "minor",
-              "tag": true
-            },{
-              "trigger": "commit",
-              "branch": "release",
-              "bump": "major",
-              "tag": true,
-              "reset": ["minor","build"]
-            }]
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          myToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Create release"
+        id: create-release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{ steps.changelog.outputs.changelog }}
