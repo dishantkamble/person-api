@@ -30,21 +30,21 @@ jobs:
             ]
           rules: >
             [{
-              "trigger":"commit",
+              "trigger": "commit",
               "branch": "staging",
               "suffix": "-beta",
-              "bump":"build"
+              "bump": "build"
             },{
               "trigger": "pull-request",
               "destBranch": "main",
               "suffix": "-rc",
               "bump": "minor",
               "tag": true
-            }, {
-              "trigger":"commit",
-              "branch":"release",
-              "bump":"major",
+            },{
+              "trigger": "commit",
+              "branch": "release",
+              "bump": "major",
               "tag": true,
-              "reset":["minor","build"]
-            }]'
+              "reset": ["minor","build"]
+            }]
           github-token: ${{ secrets.GITHUB_TOKEN }}
