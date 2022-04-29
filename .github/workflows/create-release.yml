@@ -24,4 +24,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          tag_name: ${{ steps.update-version.outputs.tag_name }}
           release_name: ${{ steps.update-version.outputs.major }}.${{ steps.update-version.outputs.minor }}.${{ steps.update-version.outputs.patch }}
