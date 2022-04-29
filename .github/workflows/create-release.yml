@@ -27,7 +27,7 @@ jobs:
             [
               "./pom.xml",
               "./VERSION"
-            ] 
+            ]
           rules: >
             [{
               "trigger":"commit",
