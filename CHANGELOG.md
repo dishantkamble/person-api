@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.0.2](https://github.com/dishantkamble/person-api/compare/v2.0.1...v2.0.2) (2022-04-29)
+
+
+### Miscellaneous
+
+* **main:** release 2.0.2-SNAPSHOT ([#62](https://github.com/dishantkamble/person-api/issues/62)) ([765f624](https://github.com/dishantkamble/person-api/commit/765f624bd370c7e0e3c99394647de54dbc9f31c4))
+
 ### [2.0.1](https://github.com/dishantkamble/person-api/compare/v2.0.0...v2.0.1) (2022-04-29)
 
 
