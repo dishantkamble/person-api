@@ -11,11 +11,10 @@ jobs:
       - name: "Update Version"
         id: update-version
         uses: google-github-actions/release-please-action@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           release-type: maven
           token: ${{ secrets.GITHUB_TOKEN }}
+          changelog-types: '[{"type":"feat","section":"Features","hidden":false},{"type":"fix","section":"Bug Fixes","hidden":false},{"type":"chore","section":"Miscellaneous","hidden":false}]'
           default-branch: main
       - name: "Create release"
         id: create-release
