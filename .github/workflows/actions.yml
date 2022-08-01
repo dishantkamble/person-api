@@ -1,0 +1,56 @@
+name: Maven and Docker Build
+on:
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Build Docker image
+      run: docker build . --file Dockerfile --tag dishant/person-api:$(date +%s)
+---
+name: CI - Create Release and Publish
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '11'
+    - name: Bump Version
+      id: bump
+      uses: remorses/bump-version@js
+      with:
+        version_file: ./VERSION
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: Update version in pom.xml (Release only)
+      run: mvn -B versions:set -DnewVersion=${{ steps.bump.outputs.version }} -DgenerateBackupPoms=false
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml install
+    - name: Publish to GitHub Packages Apache Maven
+      run: mvn deploy -Dregistry=https://maven.pkg.github.com/dishantkamble -Dtoken=$GH_TOKEN
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: Create Release
+      uses: Roang-zero1/github-create-release-action@v2
+      with:
+        created_tag: ${{ steps.bump.outputs.version }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Build Docker image
+      run: docker build . --file Dockerfile --tag dishant/person-api:${{ steps.bump.outputs.version }}
