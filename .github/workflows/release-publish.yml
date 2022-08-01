@@ -2,6 +2,9 @@ name: CI - Create Release and Publish
 on:
   push:
     branches: [ main ]
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 jobs:
   build:
     runs-on: ubuntu-latest
