@@ -8,6 +8,7 @@
     </parent>
     <groupId>com.dishant</groupId>
     <artifactId>person-api</artifactId>
+    <!-- [bump] -->
     <version>2.0.3</version>
     <description>Person API for EMBL-EBI assessment</description>
 
