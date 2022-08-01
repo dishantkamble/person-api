@@ -50,11 +50,7 @@ jobs:
         tags: |
             type=ref,event=branch
             type=ref,event=pr
-            type=raw,value=${{ steps.bump.outputs.version }}
-    - name: Print Meta Tags
-      run: "echo 'Meta Tags: ${{steps.meta.outputs.tags}}'"
-    - name: Print Meta Labels
-      run: "echo 'Meta Labels: ${{steps.meta.outputs.labels}}'"
+            type=semver,pattern={{version}},value=${{ steps.bump.outputs.version }}
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
       with:
