@@ -1,8 +1,5 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/dishantkamble/person-api/badge)](https://www.codefactor.io/repository/github/dishantkamble/person-api)
-![CodeQL](https://github.com/dishantkamble/person-api/workflows/CodeQL/badge.svg)
-![Java CI with Maven](https://github.com/dishantkamble/person-api/workflows/Java%20CI%20with%20Maven/badge.svg)
-![Docker Image CI](https://github.com/dishantkamble/person-api/workflows/Docker%20Image%20CI/badge.svg)
-
+[![CodeQL](https://github.com/dishantkamble/person-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/dishantkamble/person-api/actions/workflows/codeql-analysis.yml)
+[![CI - Create Release and Publish](https://github.com/dishantkamble/person-api/actions/workflows/release-publish.yml/badge.svg)](https://github.com/dishantkamble/person-api/actions/workflows/release-publish.yml)
 # Getting Started: 
 
 ### Technology
