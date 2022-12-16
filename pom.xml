@@ -13,7 +13,7 @@
     <description>Person API for EMBL-EBI assessment</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>19</java.version>
         <springdoc-openapi.version>1.6.14</springdoc-openapi.version>
         <commons-io.version>2.11.0</commons-io.version>
     </properties>
@@ -27,6 +27,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
