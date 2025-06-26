@@ -15,11 +15,7 @@
     <properties>
         <java.version>18</java.version>
         <springdoc-openapi.version>1.8.0</springdoc-openapi.version>
-<<<<<<< snyk-upgrade-4a5d26e665abc970384761eac987f080
-        <commons-io.version>2.16.0</commons-io.version>
-=======
         <commons-io.version>2.19.0</commons-io.version>
->>>>>>> main
     </properties>
 
     <dependencies>
