@@ -13,7 +13,7 @@
     <description>Person API for EMBL-EBI assessment</description>
 
     <properties>
-        <java.version>18</java.version>
+        <java.version>25</java.version>
         <springdoc-openapi.version>1.8.0</springdoc-openapi.version>
         <commons-io.version>2.20.0</commons-io.version>
     </properties>
@@ -80,6 +80,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -115,6 +116,18 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                     <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
