@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-    - name: Set up JDK 19
+    - name: Set up JDK 25
       uses: actions/setup-java@v5
       with:
-        distribution: 'zulu'
-        java-version: '19'
+        distribution: 'sapmachine'
+        java-version: '25'
     - name: Bump Version
       id: bump
       uses: remorses/bump-version@js
