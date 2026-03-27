@@ -1,11 +1,5 @@
 package com.dishant.person.api.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
@@ -14,19 +8,15 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
-import com.dishant.person.api.converter.PersonEntityToModelConverter;
-import com.dishant.person.api.converter.PersonModelToEntityConverter;
-import com.dishant.person.api.entity.PersonEntity;
-import com.dishant.person.api.model.Person;
-import com.dishant.person.api.repository.PersonRepository;
-import com.dishant.person.api.service.PersonServiceTest.TestConfig;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ConversionServiceFactoryBean;
 import org.springframework.core.convert.ConversionService;
@@ -37,14 +27,23 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@RunWith(SpringRunner.class)
+import com.dishant.person.api.converter.PersonEntityToModelConverter;
+import com.dishant.person.api.converter.PersonModelToEntityConverter;
+import com.dishant.person.api.entity.PersonEntity;
+import com.dishant.person.api.model.Person;
+import com.dishant.person.api.repository.PersonRepository;
+import com.dishant.person.api.service.PersonServiceTest.TestConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = { TestConfig.class, PersonService.class })
 @ActiveProfiles("test")
 public class PersonServiceTest {
 
-    @MockBean
+    @MockitoBean
     private PersonRepository personRespository;
 
     @Autowired

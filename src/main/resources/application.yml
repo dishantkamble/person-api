@@ -41,7 +41,9 @@ management:
 
 ---
 spring:
-  profiles: test
+  config:
+    activate:
+      on-profile: test
 
 security:
   basic:
