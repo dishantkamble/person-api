@@ -1,26 +1,29 @@
 package com.dishant.person.api;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.resttestclient.autoconfigure.AutoConfigureRestTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.client.EntityExchangeResult;
+import org.springframework.test.web.servlet.client.RestTestClient;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureRestTestClient
 public class PersonApiApplicationTests {
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private RestTestClient restTestClient;
 
     @Test
     public void getHealthCheck() {
-        ResponseEntity<Void> response = this.restTemplate.getForEntity("/management/health", Void.class);
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        EntityExchangeResult<Void> response = this.restTestClient.method(HttpMethod.GET)
+            .uri("/management/health")
+            .exchange()
+            .returnResult(Void.class);
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK);
     }
 }

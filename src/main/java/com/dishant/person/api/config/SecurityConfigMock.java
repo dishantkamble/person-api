@@ -12,7 +12,7 @@ public class SecurityConfigMock {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
+        http.csrf(csrf -> csrf.disable()).authorizeHttpRequests(authz -> authz.anyRequest().permitAll());
         return http.build();
     }
 }
